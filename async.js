@@ -1,71 +1,56 @@
-const studentDatabase = [
+
+const students = [
     {
         id: 1,
         firstName: "Ampfarisaho",
         lastName: "Netshitongwe",
         email: "ampfarisahonetshtongwe@gmail.com",
-        course: "JavaScript",
-        age: 24
+        course: "JavaScript"
     },
     {
         id: 2,
         firstName: "Phindulo",
         lastName: "Musengwa",
         email: "peendulamza@gmail.com",
-        course: "HTML",
-        age: 28
+        course: "HTML"
     },
     {
         id: 3,
         firstName: "David",
         lastName: "Ngobeni",
         email: "davidngobeni@gmail.com",
-        course: "CSS",
-        age: 21
+        course: "CSS"
     },
     {
         id: 4,
         firstName: "Elsie",
         lastName: "Msiza",
         email: "sierranhlanhla@gmail.com",
-        course: "React",
-        age: 23
+        course: "React"
     },
     {
         id: 5,
         firstName: "Ronewa",
         lastName: "Muthivhi",
         email: "muthivhironewa@gmail.com",
-        course: "NodeJS",
-        age: 25
+        course: "NodeJS"
     }
 ];
 
-// Question 1 
+window.onload = function () {
+    const container = document.getElementById("studentList");
 
-function synchronousDemo() {
-    console.log("Step-1 - The function is starting");
-    console.log("Step-2 - The Process is in action");
-    console.log("Step-3 - The function reached the final stage");
-}
+    students.forEach(student => {
+        const card = document.createElement("div");
+        card.className = "student-card";
 
-synchronousDemo();
+        card.innerHTML = `
+            <p><b>ID:</b> ${student.id}</p>
+            <p><b>Name:</b> ${student.firstName} ${student.lastName}</p>
+            <p><b>Email:</b> ${student.email}</p>
+            <p><b>Course:</b> ${student.course}</p>
+        `;
 
-// Question 2 
-
-function displayStudents() {
-
-    console.log("Loading student records...");
-
-    setTimeout(() => {
-
-        console.log("Student Records:");
-
-        studentDatabase.forEach(student => {
-            console.log(student);
-        });
-
-    }, 3000);
-}
-
-displayStudents();
+        container.appendChild(card);
+    });
+};

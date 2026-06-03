@@ -2,93 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup Portal</title>
+    <title>Student Records</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 30px;
-            background: #f4f4f4;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: auto;
-            background: white;
+            background: linear-gradient(135deg, #cce6ff, #ffd6f5);
+            margin: 0;
             padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .student-card {
+            background: white;
+            padding: 15px;
+            margin: 10px auto;
+            width: 60%;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin-top: 10px;
-        }
-
-        #studentOutput {
-            margin-top: 20px;
+        .student-card p {
+            margin: 5px 0;
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
-    <h2>Signup Portal</h2>
+    <h1>Student Records</h1>
 
-    <form id="signupForm">
+    <div id="studentList"></div>
 
-        <label>Username</label>
-        <input type="text" id="username">
-        <span class="error" id="usernameError"></span>
-
-        <br><br>
-
-        <label>Email</label>
-        <input type="text" id="email">
-        <span class="error" id="emailError"></span>
-
-        <br><br>
-
-        <label>Password</label>
-        <input type="password" id="password">
-        <span class="error" id="passwordError"></span>
-
-        <br><br>
-
-        <input type="checkbox" id="terms">
-        <label>I Accept Terms and Conditions</label>
-        <br>
-        <span class="error" id="termsError"></span>
-
-        <br><br>
-
-        <button type="submit">Sign Up</button>
-
-    </form>
-
-    <br>
-
-    <button id="resendBtn" disabled>
-        Resend Verification (10)
-    </button>
-
-    <div id="studentOutput"></div>
-</div>
-
-<script src="validation.js"></script>
-<script src="async.js"></script>
+    <script src="validation.js"></script>
+    <script src="async.js"></script>
 
 </body>
 </html>

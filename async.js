@@ -1,56 +1,83 @@
-
-const students = [
+const studentDatabase = [
     {
-        id: 1,
-        firstName: "Ampfarisaho",
-        lastName: "Netshitongwe",
-        email: "ampfarisahonetshtongwe@gmail.com",
-        course: "JavaScript"
+        id:1,
+        firstName:"Ampfarisaho",
+        lastName:"Netshitongwe",
+        email:"ampfanet15@gmail.com",
+        course:"software engineering",
+        age:25
     },
     {
-        id: 2,
-        firstName: "Phindulo",
-        lastName: "Musengwa",
-        email: "peendulamza@gmail.com",
-        course: "HTML"
+        id:2,
+        firstName:"Ronewa",
+        lastName:"Muthivhi",
+        email:"muthivhironewa@gmail.com",
+        course:"Accounting science",
+        age:21
     },
     {
-        id: 3,
-        firstName: "David",
-        lastName: "Ngobeni",
-        email: "davidngobeni@gmail.com",
-        course: "CSS"
+        id:3,
+        firstName:"David",
+        lastName:"Ngobeni",
+        email:"davidngobeni@gmail.com",
+        course:"Bachelor Law",
+        age:22
     },
     {
-        id: 4,
-        firstName: "Elsie",
-        lastName: "Msiza",
-        email: "sierranhlanhla@gmail.com",
-        course: "React"
+        id:4,
+        firstName:"Phindulo",
+        lastName:"Musenwa",
+        email:"peendulamza@gmail.com",
+        course:"Human resources",
+        age:28
     },
     {
-        id: 5,
-        firstName: "Ronewa",
-        lastName: "Muthivhi",
-        email: "muthivhironewa@gmail.com",
-        course: "NodeJS"
+        id:5,
+        firstName:"Nhlanhla",
+        lastName:"Msiza",
+        email:"msizanhlanhla@gmail.com",
+        course:"Social work",
+        age:24
     }
 ];
 
-window.onload = function () {
-    const container = document.getElementById("studentList");
+function runSynchronousExample(){
 
-    students.forEach(student => {
-        const card = document.createElement("div");
-        card.className = "student-card";
+    console.log("Step-1 - The function is starting");
+    console.log("Step-2 - The Process is in action");
+    console.log("Step-3 - The function reached the final stage");
 
-        card.innerHTML = `
-            <p><b>ID:</b> ${student.id}</p>
-            <p><b>Name:</b> ${student.firstName} ${student.lastName}</p>
-            <p><b>Email:</b> ${student.email}</p>
-            <p><b>Course:</b> ${student.course}</p>
-        `;
+    alert(
+        "Check the browser console (F12) to see the synchronous execution."
+    );
+}
 
-        container.appendChild(card);
-    });
-};
+function getStudents(){
+
+    const studentDiv = document.getElementById("students");
+
+    studentDiv.innerHTML =
+        "<p>Loading students... Please wait 3 seconds.</p>";
+
+    setTimeout(function(){
+
+        let output = "<h3>Student Records</h3>";
+
+        studentDatabase.forEach(student => {
+
+            output += `
+                <p>
+                    ID: ${student.id}<br>
+                    Name: ${student.firstName} ${student.lastName}<br>
+                    Email: ${student.email}<br>
+                    Course: ${student.course}<br>
+                    Age: ${student.age}
+                </p>
+                <hr>
+            `;
+        });
+
+        studentDiv.innerHTML = output;
+
+    },3000);
+}

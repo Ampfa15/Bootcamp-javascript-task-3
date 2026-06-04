@@ -1,74 +1,106 @@
 const form = document.getElementById("signupForm");
 
 form.addEventListener("submit", function(event) {
-
     event.preventDefault();
 
-    let username = document.getElementById("username");
-    let email = document.getElementById("email");
-    let password = document.getElementById("password");
-    let terms = document.getElementById("terms");
+    let isValid = true;
 
-    let valid = true;
+    const username = document.getElementById("username");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const terms = document.getElementById("terms");
 
-    document.getElementById("usernameError").textContent = "";
-    document.getElementById("emailError").textContent = "";
-    document.getElementById("passwordError").textContent = "";
-    document.getElementById("termsError").textContent = "";
+    const usernameError = document.getElementById("usernameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const termsError = document.getElementById("termsError");
+
+    
+    usernameError.textContent = "";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    termsError.textContent = "";
+
 
     username.style.border = "";
     email.style.border = "";
     password.style.border = "";
 
+    
     if (username.value.trim() === "") {
-        document.getElementById("usernameError").textContent =
-            "Username is required";
+        usernameError.textContent = "Username is required";
         username.style.border = "2px solid red";
-        valid = false;
+        isValid = false;
+    } else if (username.value.trim().length < 3) {
+        usernameError.textContent = "Username must be at least 3 characters";
+        username.style.border = "2px solid red";
+        isValid = false;
     }
 
+    
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailPattern.test(email.value)) {
-        document.getElementById("emailError").textContent =
-            "Enter a valid email";
+    if (email.value.trim() === "") {
+        emailError.textContent = "Email is required";
         email.style.border = "2px solid red";
-        valid = false;
+        isValid = false;
+    } else if (!emailPattern.test(email.value)) {
+        emailError.textContent = "Enter a valid email address";
+        email.style.border = "2px solid red";
+        isValid = false;
     }
 
-    if (password.value.length < 8) {
-        document.getElementById("passwordError").textContent =
-            "Password must be at least 8 characters";
+    
+    if (password.value.trim() === "") {
+        passwordError.textContent = "Password is required";
         password.style.border = "2px solid red";
-        valid = false;
+        isValid = false;
+    } else if (password.value.length < 8) {
+        passwordError.textContent = "Password must be at least 8 characters";
+        password.style.border = "2px solid red";
+        isValid = false;
     }
 
+    
     if (!terms.checked) {
-        document.getElementById("termsError").textContent =
-            "You must accept the terms";
-        valid = false;
+        termsError.textContent = "Please accept the Terms and Conditions";
+        isValid = false;
     }
 
-    if (valid) {
+    
+    if (isValid) {
         alert("Signup Successful!");
+
+        form.reset();
+
+        usernameError.textContent = "";
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        termsError.textContent = "";
+
+        username.style.border = "";
+        email.style.border = "";
+        password.style.border = "";
     }
 });
 
-let count = 10;
 
 const resendBtn = document.getElementById("resendBtn");
 
-const timer = setInterval(() => {
+let seconds = 10;
 
-    count--;
+const timer = setInterval(function () {
+    resendBtn.textContent = `Resend Verification (${seconds})`;
 
-    resendBtn.textContent =
-        `Resend Verification (${count})`;
+    seconds--;
 
-    if (count === 0) {
+    if (seconds < 0) {
         clearInterval(timer);
         resendBtn.disabled = false;
         resendBtn.textContent = "Resend Verification";
     }
-
 }, 1000);
+
+resendBtn.addEventListener("click", function () {
+    alert("Verification Email Sent!");
+});
